@@ -1,0 +1,71 @@
+# Environment Tool Enforcement
+
+## Rule (Blocking)
+
+When [CONFIGURE: environment tool, e.g., Pixi] is installed and a [CONFIGURE: config
+file, e.g., pixi.toml] exists in the project root:
+
+1. ALL commands MUST be prefixed with `[CONFIGURE: prefix, e.g., pixi run]`
+2. NEVER generate raw bash/zsh/PowerShell scripts for tasks that have a
+   [CONFIGURE: tool] equivalent
+3. Before running any command, CHECK the [CONFIGURE: config file] for an existing
+   task that matches the intent
+4. If no matching task exists, SUGGEST adding one to [CONFIGURE: config file] rather
+   than creating a standalone script
+5. The [CONFIGURE: config file] task descriptions are AUTHORITATIVE context for
+   what each command does — read them before asking the user
+
+## Exceptions
+
+- One-off file operations (mkdir, cp, mv) that are not project tasks
+- Git commands (git add, git commit, git push)
+- Package manager commands that are part of environment setup (npm ci, pip install)
+  UNLESS the [CONFIGURE: tool] has a setup task
+
+## Why this rule exists
+
+AI coding tools default to the most common shell patterns in their training data (bash,
+zsh, PowerShell). When a project uses a less-common but more controlled environment tool
+(Pixi, Nix, Docker Compose), the AI ignores it — bypassing reproducible environments,
+dependency isolation, and task descriptions.
+
+A well-written config file (pixi.toml, docker-compose.yml, flake.nix) is extremely
+dense context. It tells the AI what environments exist, what tasks are available, what
+the inputs and outputs are, what dependencies are required, and how to run things
+cross-platform. That's MORE information in FEWER tokens than a collection of shell
+scripts.
+
+## Decision tree: which environment tool?
+
+```mermaid
+graph TD
+    A["New project setup"] --> B{"Does the project<br/>need multiple languages?"}
+    B -->|Yes| C{"Cross-platform<br/>reproducibility needed?"}
+    B -->|No| D{"Container isolation<br/>needed?"}
+    C -->|Yes| E["Pixi<br/>(conda-forge + task runner)"]
+    C -->|No| F["Nix<br/>(deterministic builds)"]
+    D -->|Yes| G["Docker Compose<br/>(container-based)"]
+    D -->|No| H{"Language-specific<br/>tool sufficient?"}
+    H -->|Yes| I["Use language tool<br/>(npm, cargo, uv, etc.)"]
+    H -->|No| E
+```
+
+**Text summary (for screen readers):** Start with your project setup. If you need
+multiple languages, choose between Pixi (cross-platform reproducibility) and Nix
+(deterministic builds). If you only need one language, decide whether you need container
+isolation — if yes, use Docker Compose; if no, check whether your language's built-in
+tool (npm, cargo, uv, etc.) is enough. If it's not, default to Pixi.
+
+## Pixi-specific example (from origin project)
+
+The origin project's `pixi.toml` has 15+ tasks including:
+
+- `pixi run dev` — start development server
+- `pixi run test` — run unit tests
+- `pixi run test:e2e` — run end-to-end tests
+- `pixi run lint` — run ESLint
+- `pixi run format` — run Prettier
+- `pixi run build` — production build
+
+Each task has a text description that serves as context for the AI. The AI should read
+these descriptions BEFORE attempting to construct commands from scratch.

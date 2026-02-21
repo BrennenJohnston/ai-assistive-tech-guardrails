@@ -1,0 +1,57 @@
+# Golden Rules for AI Agents
+
+These rules match AGENTS.md and CLAUDE.md, formatted for Cursor's .mdc rule files.
+
+## 1. Golden rules (blocking)
+
+NEVER modify protected files: [CONFIGURE: paths, e.g., public/wasm/, public/libraries/, public/fonts/*.ttf].
+ALL interactive UI MUST have :focus-visible ring, keyboard operability, accessible name.
+Use design tokens for ALL colors, spacing, font sizes, z-index. Never hardcode.
+ALL animations MUST respect prefers-reduced-motion: reduce.
+Semantic HTML before ARIA (button, details/summary, fieldset/legend).
+Search for existing implementations before writing new code or adding dependencies.
+Keep PRs small. One feature or fix per PR.
+
+## 2. Protected files
+
+Do NOT edit:
+- [CONFIGURE: vendored binary paths]
+- [CONFIGURE: vendored font paths]
+- [CONFIGURE: other protected files]
+
+## 3. Environment tool
+
+When [CONFIGURE: tool, e.g., Pixi] is available with [CONFIGURE: config file, e.g., pixi.toml]:
+- ALL commands via [CONFIGURE: prefix, e.g., pixi run]
+- Never generate standalone scripts when a task exists
+- Read config file task descriptions before constructing commands
+- Suggest adding tasks rather than writing scripts
+
+## 4. Commit convention
+
+Use conventional commits: feat:, fix:, docs:, test:, chore:.
+[CONFIGURE: authorship rule, e.g., "Write to .git/COMMIT_MSG, commit with git commit -F .git/COMMIT_MSG"]
+Base branch: [CONFIGURE: e.g., develop].
+Branch naming: feat/short-name, fix/short-name.
+
+## 5. Accessibility requirements
+
+Target: [CONFIGURE: e.g., WCAG 2.2 Level AA].
+Touch targets: 44x44px minimum.
+Icon-only buttons: require aria-label.
+Respect: prefers-color-scheme, prefers-reduced-motion, prefers-contrast, forced-colors, prefers-reduced-transparency.
+
+## 6. Security boundaries
+
+NEVER weaken security headers (COOP/COEP/CORP, CSP).
+NEVER add unsafe-eval or unsafe-inline to CSP.
+NEVER lower audit severity level.
+NEVER commit secrets or credentials.
+
+## 7. Quality gates
+
+Before every PR:
+- [CONFIGURE: lint command]
+- [CONFIGURE: format command]
+- [CONFIGURE: unit test command]
+- [CONFIGURE: e2e test command]
