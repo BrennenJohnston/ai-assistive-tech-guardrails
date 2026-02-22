@@ -5,8 +5,8 @@ extract what worked, what failed, and what course corrections were needed when
 using AI-assisted development. It's the empirical foundation for every rule in
 this playbook.
 
-**Source:** `.cursor/plans/` directory (100 plan files), team discussion transcripts
-(2026-02-20).
+**Source:** Development plan archives (100 plan files), internal development
+experience.
 
 ## Statistical summary
 
@@ -89,7 +89,7 @@ Running a full audit to understand the current state prevented wasted work downs
 **Evidence:** `full_program_audit`, `plans_audit_&_build_plans` (9/9),
 `github_repository_audit` (12/12).
 
-## Top 5 failure anti-patterns
+## Top 6 failure anti-patterns
 
 ### 1. Scope overload
 
@@ -136,6 +136,52 @@ almost universally.
 (0/12), `responsive_drawer-based_ui_overhaul` (0/10),
 `accessible_color_system_rebuild` (0/15).
 
+### 6. Comprehension delegation
+
+Offloading the reading and analysis of primary source documents to lower-tier
+AI models or subagents. The `research_analysis_plan` incident (2026-02-21)
+demonstrated that this poisons the research base and makes all downstream
+artifacts unreliable. The cost of re-reading documents correctly is far less
+than the cost of building a project roadmap on hallucinated summaries. Even
+same-tier subagents fragment context across documents, reducing synthesis
+quality.
+
+**Evidence:** Plan `research_analysis_plan_ce9d6056` Phase 3 execution
+delegated primary-source reading and summarization to lower-tier subagents.
+All resulting summaries are marked untrusted pending re-processing.
+
+See [AI_TASK_DELEGATION_RULES.md](AI_TASK_DELEGATION_RULES.md) for the full
+delegation policy added in response to this incident.
+
+### 7. Context-boundary fabrication
+
+Multi-session tasks produce derivatives from compressed prior-session context
+instead of re-reading source documents. The output is confident, plausible,
+and wrong. This is distinct from generic hallucination — the AI has a degraded
+memory of having previously read something and writes detailed but inaccurate
+content based on that memory.
+
+**Pattern:** A resumed session writes summaries, quotes, or analyses from
+carried-over context instead of re-reading the source documents it claims to
+reference. The AI does not signal uncertainty because the compressed context
+feels like real memory.
+
+**Detection:** Compare a sample of derivatives against their claimed sources.
+If quotes, participant lists, or topic descriptions don't match, the entire
+session's output from carried-over context is suspect. Check middle-of-session
+documents first — positional bias makes these most prone to lossy compression
+[R2, Liu et al., TACL 2024].
+
+**Prevention:** Re-read before rewrite (see
+[SESSION_BOUNDARY_PROTOCOL.md](SESSION_BOUNDARY_PROTOCOL.md)). At the start
+of any resumed session, produce a handoff inventory and re-read every source
+document needed for the current session's work.
+
+**Consequence class:** Same as comprehension delegation (anti-pattern #6) —
+errors propagate into all derivative artifacts. A fabricated summary feeds a
+flawed synthesis feeds a wrong plan. Every layer of derivation from the
+corrupted source amplifies the error.
+
 ## Course-correction strategies that worked
 
 ### 1. Validated re-plans
@@ -157,8 +203,32 @@ wasted work downstream.
 ### 4. Legacy code treatment
 
 Treating AI-generated code as legacy code (where history has been lost) and
-applying characterization tests before refactoring. From team discussion: "Even
-though it's new, legacy code is code where history's been lost."
+applying characterization tests before refactoring. Even new code becomes legacy
+when the reasoning behind decisions is not preserved.
+
+AI-generated codebases are legacy from birth because:
+
+- Architectural reasoning is not preserved in the code
+- The developer who prompted the AI may not understand the generated patterns
+- Dependencies were selected by AI without team vetting
+- The codebase may look modern but its internal decisions are opaque
+
+The impulse to abandon and rebuild with AI is techno-optimism. The reality is
+that you bought something not fit for purpose and need to make it fit for
+purpose. Measured data confirms this framing: AI-generated code exhibits reduced
+refactoring and increased duplication, resembling temporary contractor work
+rather than maintainable contributions [S5, Harding & Kloster, 2024]. Existing
+regression tests catch only 7.6% of semantics-changing code changes during
+refactoring [R7, ChangeGuard, FSE 2025], meaning characterization tests must be
+written specifically for legacy sections before any modification.
+
+**Treatment protocol:**
+
+1. Wrap in characterization tests before modifying
+2. Build equitable interfaces around opaque sections
+3. Recover understanding incrementally
+4. Prefer refactoring to rewriting
+5. Measure progress by code removed, not code added
 
 ### 5. Video-based bug reporting
 
@@ -200,6 +270,11 @@ Based on these empirical patterns, use this template for AI-assisted development
 - [ ] [Specific, verifiable criterion 3]
 - [ ] All existing tests pass
 - [ ] AI bloat scan passes (no narrating comments, no hallucinated imports)
+
+## Delegation Guardrail
+- Comprehension-critical tasks in this plan: [list tasks that must NOT be delegated]
+- Delegation-safe tasks in this plan: [list tasks that MAY be delegated]
+- Verification: [ ] All comprehension-critical tasks were performed by the primary model
 
 ## OSS-First Search (if feature)
 - Searched: [what was searched]

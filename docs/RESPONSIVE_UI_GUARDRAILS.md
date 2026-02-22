@@ -1,8 +1,6 @@
 # Responsive UI Guardrails
 
-From team discussion: "If you look at this thing on mobile, it's total dookie."
-
-Mobile accessibility is not optional for AT projects. Many AT users rely on mobile
+A desktop-only mindset produces unusable mobile experiences. Mobile accessibility is not optional for AT projects. Many AT users rely on mobile
 devices as their primary computing platform. Touch interaction has different accessibility
 requirements than pointer interaction. And system preferences (reduced motion, high
 contrast, forced colors) are critical accessibility features, not nice-to-haves.
