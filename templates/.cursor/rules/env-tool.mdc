@@ -56,9 +56,9 @@ multiple languages, choose between Pixi (cross-platform reproducibility) and Nix
 isolation — if yes, use Docker Compose; if no, check whether your language's built-in
 tool (npm, cargo, uv, etc.) is enough. If it's not, default to Pixi.
 
-## Pixi-specific example (from origin project)
+## Pixi-specific example
 
-The origin project's `pixi.toml` has 15+ tasks including:
+A typical AT project's `pixi.toml` might have 15+ tasks including:
 
 - `pixi run dev` — start development server
 - `pixi run test` — run unit tests

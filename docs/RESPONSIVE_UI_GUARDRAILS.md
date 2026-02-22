@@ -88,8 +88,8 @@ enhancements — they're accessibility requirements.
 
 ## Design token approach
 
-The origin project uses ~4,000 lines of hand-authored CSS with CSS custom properties
-as the design token layer. This approach is recommended over CSS frameworks because:
+A hand-authored CSS approach with CSS custom properties as the design token layer
+is recommended over CSS frameworks because:
 
 - Zero framework dependency — no version conflicts or breaking changes
 - Full control over accessibility behavior

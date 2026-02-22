@@ -10,7 +10,7 @@ keyboard-operable, screen-reader-friendly, and visually consistent across themes
 - Semantic tokens: [CONFIGURE: path to semantic tokens file]
 - Component patterns: [CONFIGURE: path to UI standards doc]
 - Existing components to reuse before creating new ones:
-  [CONFIGURE: list existing component classes, e.g., .drawer, .btn, .btn-icon, .forge-control]
+  [CONFIGURE: list existing component classes, e.g., .drawer, .btn, .btn-icon, .panel-control]
 
 ## CONSTRAINTS
 - Use design tokens for ALL spacing, color, typography, z-index, and sizing values

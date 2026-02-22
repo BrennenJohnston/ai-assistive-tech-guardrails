@@ -5,11 +5,10 @@ assistive technology software. Drop it into your project, fill in the
 `[CONFIGURE: ...]` placeholders, and your AI assistant gets guardrails that protect
 accessibility, security, open source norms, and code quality.
 
-This playbook grew out of the [OpenSCAD Assistive Forge](https://github.com/BrennenJohnston/openscad-assistive-forge)
-project and 100+ AI-assisted development sessions. The rules are grounded in
-peer-reviewed research on AI coding productivity (see the Scientific Foundations
-table in `docs/PLAYBOOK.md`) and hard-won lessons from shipping an accessibility-first
-web app with AI assistance.
+This playbook grew out of a real-world assistive technology project and 100+
+AI-assisted development sessions. The rules are grounded in peer-reviewed research
+on AI coding productivity (see the Scientific Foundations table in `docs/PLAYBOOK.md`)
+and hard-won lessons from shipping an accessibility-first web app with AI assistance.
 
 ## What's inside
 
@@ -30,7 +29,7 @@ web app with AI assistance.
 **Pattern 1: Copy and configure (simplest)**
 
 ```bash
-git clone https://github.com/BrennenJohnston/ai-assistive-tech-guardrails.git /tmp/playbook
+git clone https://github.com/[CONFIGURE: your-username]/ai-assistive-tech-guardrails.git /tmp/playbook
 cp /tmp/playbook/AGENTS.md ./AGENTS.md
 cp /tmp/playbook/CLAUDE.md ./CLAUDE.md
 cp -r /tmp/playbook/templates/.github ./.github
@@ -40,7 +39,7 @@ cp -r /tmp/playbook/templates/.github ./.github
 **Pattern 2: Git submodule (stays updated)**
 
 ```bash
-git submodule add https://github.com/BrennenJohnston/ai-assistive-tech-guardrails.git .playbook
+git submodule add https://github.com/[CONFIGURE: your-username]/ai-assistive-tech-guardrails.git .playbook
 # Reference .playbook/AGENTS.md from your project rules
 ```
 
@@ -83,9 +82,9 @@ Dual-licensed:
 
 See `LICENSE` for full text.
 
-## Origin project
+## Origin
 
-This playbook was extracted from the [OpenSCAD Assistive Forge](https://github.com/BrennenJohnston/openscad-assistive-forge)
-project — a browser-based OpenSCAD customizer that renders parametric 3D models
-client-side via WebAssembly, with an accessibility-first UI. The rules here are
-designed to work for any assistive technology project, not just that one.
+This playbook was extracted from a real-world assistive technology project — a
+browser-based tool that generates accessible 3D models client-side via WebAssembly,
+with an accessibility-first UI. The rules here are designed to work for any
+assistive technology project, not just the one that inspired them.

@@ -6,7 +6,7 @@ You understand memory models, message passing between main thread and Web Worker
 and browser-level threading constraints (SharedArrayBuffer, COOP/COEP).
 
 ## CONTEXT
-- Worker file: [CONFIGURE: path to worker file, e.g., src/worker/openscad-worker.js]
+- Worker file: [CONFIGURE: path to worker file, e.g., src/worker/main-worker.js]
 - WASM binary location: [CONFIGURE: path to WASM directory]
 - WASM is a VENDORED BINARY — do NOT modify it. Debug the JS integration layer only.
 - The worker communicates via postMessage. Trace the message flow.
