@@ -14,11 +14,11 @@ and hard-won lessons from shipping an accessibility-first web app with AI assist
 
 | Folder | What you'll find |
 | --- | --- |
-| `docs/` | Deep-dive guides: AT scope, OSS contribution, responsive UI, process cadence, token economics, legal, maintainer sustainability, GitHub Open Source Guides reference index, and more |
-| `checklists/` | Quick-reference checklists: bloat scanning, post-edit verification, OSS-first search, responsive UI, docs accessibility |
-| `prompts/` | 16 copy-and-paste prompt templates covering WASM debugging, accessibility remediation, 3D-print AT devices, OSS contribution, research synthesis, and more |
-| `templates/` | Ready-to-copy config files for Cursor, GitHub Copilot, issue templates, PR templates, `.editorconfig`, and `pixi.toml` |
-| `scripts/` | Optional automation: bloat scanner, hallucinated import detector |
+| `docs/` | Deep-dive guides: AT scope, the screen reader standard (NVDA), OSS contribution, responsive UI, process cadence, token economics, legal, maintainer sustainability, GitHub Open Source Guides reference index, and more |
+| `checklists/` | Quick-reference checklists: bloat scanning, post-edit verification, screen reader check, OSS-first search, responsive UI, docs accessibility |
+| `prompts/` | 17 copy-and-paste prompt templates covering WASM debugging, accessibility remediation, screen reader work, 3D-print AT devices, OSS contribution, research synthesis, and more |
+| `templates/` | Ready-to-copy config files for Cursor, GitHub Copilot, issue templates, PR templates, an NVDA walkthrough, `.editorconfig`, and `pixi.toml` |
+| `scripts/` | Optional automation: bloat scanner, hallucinated import detector, NVDA walk driver, live region recorder |
 | `AGENTS.md` | Universal golden rules (works with any AI tool) |
 | `CLAUDE.md` | Rules formatted for Claude Code |
 

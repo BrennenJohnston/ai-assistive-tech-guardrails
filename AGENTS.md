@@ -77,6 +77,10 @@ Exceptions: one-off file operations (mkdir, cp, mv), git commands, initial setup
 - All five system preference media queries must be respected:
   `prefers-color-scheme`, `prefers-reduced-motion`, `prefers-contrast`,
   `forced-colors`, `prefers-reduced-transparency`
+- Screen reader work (status messages, focus, names, descriptions, headings)
+  follows `[CONFIGURE: path to the playbook]/docs/SCREEN_READER_STANDARD.md`. A
+  screen reader bug is fixed only when the NVDA re-check passes, not when its test
+  passes.
 
 ## 6. Security boundaries
 

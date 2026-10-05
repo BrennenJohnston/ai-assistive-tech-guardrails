@@ -17,7 +17,7 @@ Reference this checklist from your PR template
 | 4 | Semantic HTML used | Verify native elements (`button`, `details`, `fieldset`, `nav`, `main`, headings) are used where they work. No ARIA where a native element achieves the same result. | Yes |
 | 5 | Touch target >= 44x44px | Measure touch targets on interactive elements. Verify minimum size at all breakpoints. | Yes |
 | 6 | `prefers-reduced-motion` respected | Enable reduced motion preference. Verify no required animation plays. | Yes |
-| 7 | Screen reader tested | Test with at least one screen reader. Note which one: ___ | Yes |
+| 7 | Screen reader tested | Test with at least one screen reader. Note which one: ___. With NVDA, follow `screen-reader-check.md` and attach the transcripts from NVDA's log. | Yes |
 | 8 | High contrast / forced colors | Verify UI is readable and operable in `forced-colors: active` mode. | Warning |
 
 ## AI guardrails checks

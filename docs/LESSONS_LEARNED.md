@@ -253,6 +253,25 @@ to review.
 5. **Cross-tool portability is non-optional** -- Rules in `.cursor/rules/` are invisible
    to contributors using Copilot or Claude Code
 
+## Screen reader verification lessons (2026)
+
+A later project ran its screen reader work with NVDA from August to October 2026.
+In October an AI agent drove NVDA itself and read NVDA's own log after every step.
+Full story: [NVDA_WALKTHROUGH_LESSONS.md](NVDA_WALKTHROUGH_LESSONS.md). The rules
+are in [SCREEN_READER_STANDARD.md](SCREEN_READER_STANDARD.md).
+
+1. **The screen reader's log is the evidence** -- predictions from the markup or the
+   accessibility tree were wrong in both directions
+2. **Every automated layer missed a real bug** -- Lighthouse and axe-core scored 100
+   with silent status messages; Chromium's tree had the right name while NVDA spoke a
+   stale one
+3. **A passing test is not the fix** -- a fix passed its new test and NVDA still spoke
+   the bug, because NVDA reacted to an attribute the test did not watch
+4. **Walkthroughs drift from how the screen reader moves** -- NVDA's first Tab, its
+   remembered reading position and its browse and focus modes broke written steps
+5. **Never send keys blind** -- check where each key landed before pressing Enter,
+   Space, an arrow or a letter
+
 ## Recommended plan template
 
 Based on these empirical patterns, use this template for AI-assisted development plans:

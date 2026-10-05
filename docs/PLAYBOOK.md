@@ -301,7 +301,7 @@ single source of truth.
 
 ## 18. Prompt library
 
-Sixteen ready-to-use prompts for common development scenarios. Each uses one
+Seventeen ready-to-use prompts for common development scenarios. Each uses one
 dominant technique (per arXiv:2412.20545), stays under 500 words, and includes
 acceptance criteria and anti-patterns.
 
@@ -325,6 +325,7 @@ acceptance criteria and anti-patterns.
 | 14 | 3D-print AT device design | Persona |
 | 15 | Open source contribution | Persona |
 | 16 | Research synthesis | Persona |
+| 17 | Screen reader work (NVDA) | Persona |
 
 ---
 
@@ -392,6 +393,9 @@ Analysis of 100 Cursor development plans from the origin project. Key findings:
 
 **Full analysis:** [LESSONS_LEARNED.md](LESSONS_LEARNED.md)
 
+**Screen reader lessons:** [NVDA_WALKTHROUGH_LESSONS.md](NVDA_WALKTHROUGH_LESSONS.md),
+from the first time an AI agent drove NVDA and read its log (October 2026).
+
 ---
 
 ## 24. Recommended plan template
@@ -448,6 +452,31 @@ options, supporting evidence, and the default outcome if no decision is made.
 
 ---
 
+## 26. Screen reader standard (NVDA)
+
+How to design, build, test and hand over anything a screen reader user hears:
+page structure, names, descriptions, status messages and focus. The screen
+reader's own log is the evidence, and a passing test is not the verdict on a
+screen reader bug: the NVDA re-check is. Written so an AI agent can follow it
+without a human explaining it, with the points where a human must decide named.
+
+**Standard:** [SCREEN_READER_STANDARD.md](SCREEN_READER_STANDARD.md)
+
+**Checklist:** [screen-reader-check.md](../checklists/screen-reader-check.md)
+
+**Template:** [nvda-walkthrough.md](../templates/nvda-walkthrough.md)
+
+**Tools:** [nvda-walk.py](../scripts/nvda-walk.py) (drives NVDA, reads its log) and
+[live-region-recorder.js](../scripts/live-region-recorder.js) (records live region
+writes and lost focus in tests)
+
+**Why it matters:** in the projects behind this playbook, Lighthouse and axe-core
+scored 100 while status messages were silent, and every automated check passed
+while a page spoke "Normal, Normal" on every load. Only listening found them. See
+[NVDA_WALKTHROUGH_LESSONS.md](NVDA_WALKTHROUGH_LESSONS.md).
+
+---
+
 ## Configuration checklist
 
 When you first import this playbook, work through these steps:
@@ -460,6 +489,8 @@ When you first import this playbook, work through these steps:
 - [ ] Set up your quality gate commands (lint, format, test)
 - [ ] Copy issue and PR templates to `.github/`
 - [ ] Review the prompt library and adapt prompts to your stack
+- [ ] If your project has a UI: fill in the screen reader checklist's configuration
+      and add a walkthrough from the NVDA template
 - [ ] Schedule your first monthly review of rules vs. AI tool behavior
 
 ---

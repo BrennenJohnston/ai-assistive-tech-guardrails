@@ -55,6 +55,9 @@ Exceptions: file operations, git commands, initial setup.
 - Icon-only buttons: require `aria-label`
 - Respect all system preferences: `prefers-color-scheme`, `prefers-reduced-motion`,
   `prefers-contrast`, `forced-colors`, `prefers-reduced-transparency`
+- Screen reader work (status messages, focus, names, descriptions, headings) follows
+  `[CONFIGURE: path to the playbook]/docs/SCREEN_READER_STANDARD.md`. A screen reader
+  bug is fixed only when the NVDA re-check passes, not when its test passes.
 
 ## Security boundaries
 

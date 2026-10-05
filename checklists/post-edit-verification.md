@@ -28,7 +28,7 @@ features and major changes.
 | Check | Method | Blocking? |
 | --- | --- | --- |
 | Keyboard-only walkthrough | Manual: Tab through all new/changed interactive elements | Yes |
-| Screen reader spot-check | Manual: Verify accessible names, live region announcements | Yes |
+| Screen reader check | Follow `screen-reader-check.md`: names, descriptions, live region announcements and focus, verified from NVDA's log | Yes |
 | High-contrast mode | Manual: Visual check in all themes + forced-colors | Yes |
 | Reduced-motion behavior | Manual: Enable `prefers-reduced-motion` and verify | Yes |
 | Touch target measurement | Manual or DevTools: Verify >= minimum size | Yes |
@@ -83,7 +83,7 @@ For projects that want to automate parts of this:
 
 **Tier 2 (UI/accessibility changes only)**
 - [ ] Keyboard-only walkthrough
-- [ ] Screen reader spot-check
+- [ ] Screen reader check (`screen-reader-check.md`, NVDA log attached)
 - [ ] High-contrast mode check
 - [ ] Reduced-motion behavior verified
 - [ ] Touch targets >= minimum size
